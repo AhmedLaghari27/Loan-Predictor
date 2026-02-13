@@ -49,10 +49,6 @@ npm install
 npm run dev
 ```
 
-## 📸 Screenshots
-
-[Add screenshots here]
-
 ## 📄 License
 
 MIT
