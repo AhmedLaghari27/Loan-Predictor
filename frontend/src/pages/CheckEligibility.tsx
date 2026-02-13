@@ -18,8 +18,15 @@ export function LoanEligibilityForm() {
     propertyArea: '',
   });
 
+  interface LoanPredictionResult {
+    prediction: string;
+    confidence: number;
+    key_factors: string[];
+    recommendations: string[];
+  }
+
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<LoanPredictionResult | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

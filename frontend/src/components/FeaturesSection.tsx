@@ -33,7 +33,7 @@ const FEATURES_DATA = [
 ];
 
 interface FeatureProps {
-  icon: React.FC<{ size?: number; stroke?: number }>;
+  icon: React.FC<{ size?: number; stroke?: number; color?: string }>;
   title: string;
   description: string;
   gradient: string;
@@ -101,7 +101,7 @@ export function Feature({ icon: Icon, title, description, gradient, color }: Fea
             boxShadow: `0 8px 16px ${color}30`,
           }}
         >
-          <Icon size={40} stroke={2} color="#FFFFFF" />
+<Icon size={40} stroke={2} color="white" />
           
           {/* Animated pulse ring */}
           <Box
