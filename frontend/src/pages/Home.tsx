@@ -6,8 +6,7 @@ import { IconSparkles, IconRocket, IconShieldCheck } from '@tabler/icons-react';
 import backgroundImg from '../assets/27.jpg';
 import { StatsSection } from '../components/StatsSection';
 import { FeaturesSection } from '../components/FeaturesSection';
-import HowItWorksSection from '../components/HowItWorksSection';
-import { useNavigate } from 'react-router-dom';
+import { HowItWorksSection } from '../components/HowItWorksSection';import { useNavigate } from 'react-router-dom';
 
 
 
