@@ -1,5 +1,5 @@
 import { IconFileText, IconBrain, IconChartDots } from '@tabler/icons-react';
-import { Container, Text, Title, Box, Timeline,  } from '@mantine/core';
+import { Container, Text, Title, Box, Stack } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
 const STEPS_DATA = [
@@ -33,7 +33,7 @@ export function HowItWorksSection() {
     <Box
       style={{
         background: '#7bcec3b6',
-        padding: '120px 0',
+        padding: '80px 0',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -64,9 +64,9 @@ export function HowItWorksSection() {
         }}
       />
 
-      <Container size="lg" style={{ position: 'relative', zIndex: 1 }}>
+      <Container size="lg" style={{ position: 'relative', zIndex: 1, padding: '0 20px' }}>
         {/* Section Header */}
-        <Box ta="center" mb={80}>
+        <Box ta="center" mb={60}>
           <Box
             style={{
               display: 'inline-block',
@@ -75,7 +75,7 @@ export function HowItWorksSection() {
               background: 'rgba(255, 255, 255, 0.2)',
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.3)',
-              marginBottom: '24px',
+              marginBottom: '20px',
             }}
           >
             <Text
@@ -94,24 +94,25 @@ export function HowItWorksSection() {
           <Title
             order={1}
             style={{
-              fontSize: '56px',
+              fontSize: 'clamp(32px, 8vw, 56px)',
               fontWeight: 900,
               color: '#FFFFFF',
-              marginBottom: '24px',
+              marginBottom: '16px',
               letterSpacing: '-1px',
+              padding: '0 16px',
             }}
           >
             How It Works
           </Title>
 
           <Text
-            size="xl"
             style={{
               color: 'rgba(255, 255, 255, 0.9)',
-              maxWidth: '700px',
+              maxWidth: '600px',
               margin: '0 auto',
-              lineHeight: 1.7,
-              fontSize: '20px',
+              lineHeight: 1.6,
+              fontSize: 'clamp(16px, 4vw, 20px)',
+              padding: '0 20px',
             }}
           >
             Get your loan eligibility prediction in three simple steps.
@@ -119,142 +120,176 @@ export function HowItWorksSection() {
           </Text>
         </Box>
 
-        {/* Timeline */}
-        <Box
-          style={{
-            maxWidth: '900px',
-            margin: '0 auto',
-          }}
-        >
-          <Timeline
-            active={3}
-            bulletSize={80}
-            lineWidth={3}
-            color="rgba(255, 255, 255, 0.3)"
-          >
-            {STEPS_DATA.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <Timeline.Item
-                  key={index}
-                  bullet={
+        {/* Steps - Card Layout for Mobile */}
+        <Stack gap="lg" style={{ maxWidth: '900px', margin: '0 auto' }}>
+          {STEPS_DATA.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <Box
+                key={index}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '20px',
+                  padding: 'clamp(20px, 5vw, 32px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Desktop Icon - Hidden on mobile */}
+                <Box
+                  hiddenFrom="sm"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '12px',
+                    background: step.gradient,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '16px',
+                    fontSize: '18px',
+                    fontWeight: 900,
+                    color: '#FFFFFF',
+                  }}
+                >
+                  {index + 1}
+                </Box>
+
+                {/* Desktop Layout */}
+                <Box
+                  visibleFrom="sm"
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}
+                >
+                  {/* Icon Circle */}
+                  <Box
+                    style={{
+                      width: '70px',
+                      height: '70px',
+                      minWidth: '70px',
+                      borderRadius: '50%',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                    }}
+                  >
                     <Box
                       style={{
-                        width: '80px',
-                        height: '80px',
+                        width: '50px',
+                        height: '50px',
                         borderRadius: '50%',
-                        background: 'rgba(255, 255, 255, 0.95)',
+                        background: step.gradient,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                        position: 'relative',
                       }}
                     >
+                      <Icon size={28} stroke={2} color="#FFFFFF" />
+                    </Box>
+                  </Box>
+
+                  {/* Content */}
+                  <Box style={{ flex: 1 }}>
+                    <Box style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                       <Box
                         style={{
-                          width: '60px',
-                          height: '60px',
-                          borderRadius: '50%',
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '8px',
                           background: step.gradient,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          fontSize: '16px',
+                          fontWeight: 900,
+                          color: '#FFFFFF',
                         }}
                       >
-                        <Icon size={32} stroke={2} color="#FFFFFF" />
+                        {index + 1}
                       </Box>
+                      <Title
+                        order={3}
+                        style={{
+                          fontSize: '24px',
+                          fontWeight: 700,
+                          color: '#FFFFFF',
+                          margin: 0,
+                        }}
+                      >
+                        {step.title}
+                      </Title>
                     </Box>
-                  }
-                  title={
-                    <Box
+                    <Text
                       style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '20px',
-                        padding: '32px',
-                        marginBottom: '40px',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        transition: 'all 0.3s ease',
-                        cursor: 'pointer',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                        e.currentTarget.style.transform = 'translateX(10px)';
-                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                        e.currentTarget.style.transform = 'translateX(0)';
-                        e.currentTarget.style.boxShadow = 'none';
+                        color: 'rgba(255, 255, 255, 0.85)',
+                        lineHeight: 1.7,
+                        fontSize: '16px',
                       }}
                     >
-                      <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-                        <Box
-                          style={{
-                            width: '40px',
-                            height: '40px',
-                            borderRadius: '12px',
-                            background: step.gradient,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            marginRight: '16px',
-                            fontSize: '20px',
-                            fontWeight: 900,
-                            color: '#FFFFFF',
-                          }}
-                        >
-                          {index + 1}
-                        </Box>
-                        <Title
-                          order={3}
-                          style={{
-                            fontSize: '28px',
-                            fontWeight: 700,
-                            color: '#FFFFFF',
-                            margin: 0,
-                          }}
-                        >
-                          {step.title}
-                        </Title>
-                      </Box>
-                      <Text
-                        size="lg"
-                        style={{
-                          color: 'rgba(255, 255, 255, 0.85)',
-                          lineHeight: 1.7,
-                          fontSize: '16px',
-                          paddingLeft: '56px',
-                        }}
-                      >
-                        {step.description}
-                      </Text>
-                    </Box>
-                  }
-                />
-              );
-            })}
-          </Timeline>
-        </Box>
+                      {step.description}
+                    </Text>
+                  </Box>
+                </Box>
+
+                {/* Mobile Layout - No Icon Circle */}
+                <Box hiddenFrom="sm">
+                  <Title
+                    order={3}
+                    style={{
+                      fontSize: 'clamp(20px, 5vw, 24px)',
+                      fontWeight: 700,
+                      color: '#FFFFFF',
+                      marginBottom: '12px',
+                    }}
+                  >
+                    {step.title}
+                  </Title>
+                  <Text
+                    style={{
+                      color: 'rgba(255, 255, 255, 0.85)',
+                      lineHeight: 1.6,
+                      fontSize: 'clamp(14px, 3.5vw, 16px)',
+                    }}
+                  >
+                    {step.description}
+                  </Text>
+                </Box>
+              </Box>
+            );
+          })}
+        </Stack>
 
         {/* CTA */}
-        <Box ta="center" mt={60}>
+        <Box ta="center" mt={50}>
           <Box
             component="button"
             onClick={() => navigate('/check-eligibility')}
-
             style={{
               background: '#12e9cd',
               color: '#fcfdff',
               border: 'none',
-              padding: '18px 48px',
+              padding: 'clamp(14px, 3vw, 18px) clamp(32px, 8vw, 48px)',
               borderRadius: '50px',
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 3.5vw, 18px)',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+              width: 'auto',
+              maxWidth: '100%',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-4px)';
@@ -272,4 +307,5 @@ export function HowItWorksSection() {
     </Box>
   );
 }
+
 export default HowItWorksSection;

@@ -25,7 +25,7 @@ function Home() {
           top: 0,
           left: 0,
           width: '100%',
-          height: '110vh',
+          height: '150vh',
           backgroundImage: `url(${backgroundImg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -39,7 +39,7 @@ function Home() {
           top: 0,
           left: 0,
           width: '100%',
-          height: '110vh',
+          height: '150vh',
           background: '#7bcec3b6',
           zIndex: 0,
         }} />
